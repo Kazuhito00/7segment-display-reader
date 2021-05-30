@@ -20,12 +20,14 @@ def get_args():
     parser.add_argument("--device", type=int, default=0)
     parser.add_argument("--width", type=int, default=640)
     parser.add_argument("--height", type=int, default=480)
-    parser.add_argument("--crop_width", type=int, default=80)
-    parser.add_argument("--crop_height", type=int, default=80)
+    parser.add_argument("--crop_width", type=int, default=96)
+    parser.add_argument("--crop_height", type=int, default=96)
 
     parser.add_argument("--num_digits", type=int, default=4)
+    parser.add_argument("--check_count", type=int, default=5)
 
-    parser.add_argument('--use_monochrome', action='store_true')
+    parser.add_argument('--use_binarize', action='store_true')
+    parser.add_argument('--use_binarize_inverse', action='store_true')
 
     args = parser.parse_args()
 
@@ -50,8 +52,10 @@ def main():
     crop_height = args.crop_height
 
     num_digits = args.num_digits
+    check_count = args.check_count
 
-    use_monochrome = args.use_monochrome
+    use_binarize = args.use_binarize
+    use_binarize_inverse = args.use_binarize_inverse
 
     # GUI準備
     window_name = '7seg Reader'
@@ -68,7 +72,7 @@ def main():
 
     # tfliteモデルロード
     interpreter = None
-    if use_monochrome is False:
+    if (use_binarize is False) and (use_binarize_inverse is False):
         print('Load : 02.model/7seg_classifier.tflite')
         interpreter = tf.lite.Interpreter(
             model_path='02.model/7seg_classifier.tflite')
@@ -81,13 +85,12 @@ def main():
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
 
-    #
+    # 推論結果格納用変数
     results = []
     for index in range(num_digits):
-        results.append(deque(maxlen=5))
+        results.append(deque(maxlen=check_count))
 
     elapsed_time = 0.0
-
     while True:
         start_time = time.time()
 
@@ -96,7 +99,7 @@ def main():
         # カメラキャプチャ
         ret, frame = cap.read()
         if not ret:
-            print('cap.read() error')
+            print('Error : cap.read()')
         resize_frame = cv.resize(frame, (int(cap_width), int(cap_height)))
 
         # 指定領域抜き出し
@@ -120,7 +123,7 @@ def main():
 
         # 7セグメント推論
         if extract_image is not None:
-            if use_monochrome is True:
+            if (use_binarize is True) or (use_binarize_inverse is True):
                 # グレースケール化
                 extract_image = cv.cvtColor(extract_image, cv.COLOR_BGR2GRAY)
 
@@ -134,6 +137,10 @@ def main():
                 # 2値化
                 _, extract_image = cv.threshold(
                     extract_image, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)
+
+                # 反転
+                if use_binarize_inverse is True:
+                    extract_image = cv.bitwise_not(extract_image)
 
                 # BGR形式へ戻す
                 extract_image = cv.cvtColor(extract_image, cv.COLOR_GRAY2BGR)
