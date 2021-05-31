@@ -63,6 +63,7 @@ OpenCVの描画関数で疑似的に作成したデータセット<br>
 
 #### 2.モデル訓練
 「[01-01.train_model.ipynb](01-01.train_model.ipynb)」をJupyter Notebookで開いて上から順に実行してください。<br>
+Google Colaboratory上での実行を想定していますが、ローカルPCでも動作出来ると思います。<br>
 
 #### X.モデル構造
 「[01-01.train_model.ipynb](01-01.train_model.ipynb)」で用意しているモデルのイメージは以下です。
