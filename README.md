@@ -1,6 +1,7 @@
 # 7segment-display-reader
 7セグメントディスプレイの数値を認識するプログラムです。<br>
-ローカルPC or Raspberry Pi上での実行を想定しています。
+ローカルPC or Raspberry Pi上での実行を想定しています。<br>
+<img src="https://user-images.githubusercontent.com/37477845/120185356-0b224e00-c24d-11eb-9e02-cc53e7f633d3.gif" width="40%">　<img src="https://user-images.githubusercontent.com/37477845/120185427-28571c80-c24d-11eb-9ff0-e4470e6aa266.gif" width="40%">
 
 本リポジトリは以下の内容を含みます。
 * サンプルプログラム
@@ -13,11 +14,12 @@
 * matplotlib 3.3.2 or Later 
 
 # Usage
-実行方法は以下です。
+実行方法は以下です。<br>
+起動後、マウスで4点(左上、右上、右下、左下の順)検出対象をクリックする<br>
 ```bash
 python 7seg-reader.py
 ```
-
+<br>
 実行時には、以下のオプションが指定可能です。
 * --device<br>
 カメラデバイス番号の指定<br>
