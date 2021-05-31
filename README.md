@@ -53,6 +53,13 @@ python 7seg-reader.py
 
 # Training
 #### 1.学習データ
+以下のデータを混合し、学習データ：検証データ = 3：1 で分割して使用
+* [01.dataset](01.dataset)<br>
+2種類の7セグメント表示器を撮影したデータセット<br>
+「0」～「9」「表示なし」のデータで約42,000枚
+* [Kazuhito00/7seg-image-generator](https://github.com/Kazuhito00/7seg-image-generator)<br>
+OpenCVの描画関数で疑似的に作成したデータセット<br>
+「0」～「9」「-」「表示なし」のデータで48,000枚
 
 #### 2.モデル訓練
 「[01-01.train_model.ipynb](01-01.train_model.ipynb)」をJupyter Notebookで開いて上から順に実行してください。<br>
