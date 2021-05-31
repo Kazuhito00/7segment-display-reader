@@ -1,1 +1,1 @@
-# 7-segment-display-reader
+# 7segment-display-reader
