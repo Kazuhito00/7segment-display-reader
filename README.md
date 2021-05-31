@@ -67,7 +67,7 @@ Google Colaboratory上での実行を想定していますが、ローカルPC�
 
 #### X.モデル構造
 「[01-01.train_model.ipynb](01-01.train_model.ipynb)」で用意しているモデルのイメージは以下です。
-<img src="https://user-images.githubusercontent.com/37477845/102246723-69c76a00-3f42-11eb-8a4b-7c6b032b7e71.png" width="50%"><br><br>
+<img src="https://user-images.githubusercontent.com/37477845/120166466-8f69d680-c237-11eb-978a-7e14628db468.png" width="50%"><br><br>
 
 # Author
 高橋かずひと(https://twitter.com/KzhtTkhs)
