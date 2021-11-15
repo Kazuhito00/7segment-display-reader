@@ -1,6 +1,7 @@
 # 7segment-display-reader
 7セグメントディスプレイの数値を認識するプログラムです。<br>
 ローカルPC(CPU推論) or Raspberry Pi上での実行を想定しています。<br>
+2021/11/16：より軽量なモデルに差し替えました(Raspberry Pi4：4桁の推論で15～20fps程度）<br>
 <img src="https://user-images.githubusercontent.com/37477845/120185356-0b224e00-c24d-11eb-9e02-cc53e7f633d3.gif" width="40%">　<img src="https://user-images.githubusercontent.com/37477845/120185427-28571c80-c24d-11eb-9ff0-e4470e6aa266.gif" width="40%">
 
 本リポジトリは以下の内容を含みます。
